@@ -2,11 +2,59 @@ import 'product.dart';
 import 'product_manager.dart';
 import 'dart:io';
 
-void main() {
-  var manager = ProductManager();
-
+String Stringinput(String prompt) {
   while (true) {
-    
+    stdout.write(prompt);
+    var input = stdin.readLineSync();
+
+    // Check if input is not null or empty
+    if (input == null || input.trim().isEmpty) {
+      print("Input cannot be empty. Try again.");
+    } else {
+      return input;
+    }
+  }
+}
+
+
+double doubleInput(String prompt) {
+  while (true) {
+    stdout.write(prompt);
+    String? value = stdin.readLineSync();
+
+    // Check if input is not null or empty
+    if (value != null && value.trim().isNotEmpty) {
+      try {
+        return double.parse(value);
+      } catch (e) {
+        print('Please enter a valid double value.');
+      }
+    } else {
+      print('Input cannot be empty. Try again.');
+    }
+  }
+}
+
+int IntInput(String prompt) {
+  while (true) {
+    stdout.write(prompt);
+    String? value = stdin.readLineSync();
+
+    // Check if input is not null or empty
+    if (value != null && value.trim().isNotEmpty) {
+      try {
+        return int.parse(value);
+      } catch (e) {
+        print('Please enter a valid integer value');
+      }
+    } else {
+      print('Input cannot be empty. Try again.');
+    }
+  }
+}
+
+void Menu(ProductManager manager) {
+  while (true) {
     print(' Product Manager Menu:');
     print('1. Add Product');
     print('2. View All Products');
@@ -15,55 +63,56 @@ void main() {
     print('5. Delete Product');
     print('6. Exit');
 
-    stdout.write('Choose an option: ');
-    String? input = stdin.readLineSync();
+    int Choose = IntInput('Enter your choice: '); 
 
-    switch (input) {
-      case '1':
-        stdout.write('Name: ');
-        var name = stdin.readLineSync()!;
-        stdout.write('Description: ');
-        var desc = stdin.readLineSync()!;
-        stdout.write('Price: ');
-        var price = double.parse(stdin.readLineSync()!);
+    switch (Choose) {
+      case 1:
+        var name = Stringinput('Name: ');
+
+        var desc = Stringinput('Discription: ');
+
+        var price = doubleInput('Price: ');
         manager.addProduct(
           Product(Name: name, Description: desc, price: price),
         );
         break;
 
-      case '2':
+      case 2:
         manager.viewallProducts();
         break;
 
-      case '3':
-        stdout.write('Enter product name to view: ');
-        var name = stdin.readLineSync()!;
+      case 3:
+
+        var name = Stringinput('Enter product name to view: ');
         manager.viewsingleProduct(name);
         break;
 
-      case '4':
-        stdout.write('Enter product name you want to edit: ');
-        var name = stdin.readLineSync()!;
-        stdout.write('New name: ');
-        var newName = stdin.readLineSync()!;
-        stdout.write('New description: ');
-        var newDesc = stdin.readLineSync()!;
-        stdout.write('New price: ');
-        var newPrice = double.parse(stdin.readLineSync()!);
+      case 4:
+       
+        var name = Stringinput('Enter product name you want to edit: ');
+        var newName = Stringinput('New name: ');
+        var newDesc = Stringinput('New description: ');
+        var newPrice = doubleInput('New price: ');
         manager.editproduct(name, newName, newPrice, newDesc);
         break;
 
-      case '5':
-        stdout.write('Enter product name you want to delete: ');
-        var name = stdin.readLineSync()!;
+      case 5:
+
+        var name = Stringinput('Enter product name you want to delete: ');
         manager.deleteProduct(name);
         break;
 
-      case '6':
+      case 6:
         return;
 
       default:
         print('Invalid');
     }
   }
+}
+
+void main() {
+  var manager = ProductManager();
+  // to control the flow of the program
+  Menu(manager);
 }
