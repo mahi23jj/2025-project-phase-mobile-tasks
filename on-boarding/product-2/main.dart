@@ -6,6 +6,7 @@ void main() {
   var manager = ProductManager();
 
   while (true) {
+    
     print(' Product Manager Menu:');
     print('1. Add Product');
     print('2. View All Products');
