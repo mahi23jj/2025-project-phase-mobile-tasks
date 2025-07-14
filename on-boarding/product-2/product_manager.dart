@@ -8,6 +8,7 @@ class ProductManager {
   }
 
   void display(Product product) {
+    
     print('Name: ${product.Name}');
     print('Description: ${product.Description}');
     print('price: ${product.price}');
