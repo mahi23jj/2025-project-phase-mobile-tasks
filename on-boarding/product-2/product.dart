@@ -3,6 +3,10 @@ class Product {
   String Description;
   double price;
 
-  Product({
-    required this.Name, required this.Description, required this.price});
+  Product(
+    {
+    required this.Name, 
+    required this.Description,
+     required this.price
+     });
 }
