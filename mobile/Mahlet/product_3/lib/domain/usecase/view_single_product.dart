@@ -4,10 +4,10 @@ import '../../core/Error/error.dart';
 import '../Entity/product_entity.dart';
 import '../Repository/product_repository.dart';
 
-class ViewAllProduct {
+class ViewSingleProduct {
   final ProductRepository productRepository;
-  ViewAllProduct(this.productRepository);
-   Future<Either<Failure, List<Product>>> call() async {
-    return await productRepository.getAllProduct();
+   ViewSingleProduct(this.productRepository);
+   Future<Either<Failure, Product>> call(int id) async {
+    return await productRepository.getProductById(id);
   }
 }

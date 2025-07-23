@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:product_3/domain/Entity/product_Entity.dart';
+import 'package:product_3/domain/Entity/product_entity.dart';
 import 'package:product_3/presentation/pages/features/ProductForm/widget/customeTextForm.dart';
 import 'package:product_3/core/style.dart';
 import 'package:product_3/core/widegt/cusomebutton.dart';
-import 'package:product_3/core/widegt/customeDropDown.dart';
+import 'package:product_3/core/widegt/custome_drop_down.dart';
 import 'package:product_3/core/widegt/custome_arrow_back.dart';
 
 import '../../../../../oprations.dart';

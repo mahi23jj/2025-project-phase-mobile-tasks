@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 
 import '../../../../../core/style.dart';
 import '../../../../../core/widegt/cusomebutton.dart';
-import '../../../../../core/widegt/customeDropDown.dart';
+import '../../../../../core/widegt/custome_drop_down.dart';
 import '../../../../../core/widegt/custome_arrow_back.dart';
 import '../../../../../oprations.dart';
-import '../../../../../domain/Entity/product_Entity.dart';
+import '../../../../../domain/Entity/product_entity.dart';
 import '../widget/customeTextForm.dart';
 
 class EditFormpage extends StatefulWidget {

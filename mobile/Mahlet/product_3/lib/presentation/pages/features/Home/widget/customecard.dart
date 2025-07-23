@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:product_3/domain/Entity/product_Entity.dart';
+import 'package:product_3/domain/Entity/product_entity.dart';
 import 'package:product_3/core/style.dart';
 
 class Customecard extends StatelessWidget {

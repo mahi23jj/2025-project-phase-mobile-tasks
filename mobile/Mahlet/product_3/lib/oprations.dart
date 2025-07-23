@@ -1,4 +1,4 @@
-import 'domain/Entity/product_Entity.dart';
+import 'domain/Entity/product_entity.dart';
 
 class Oprations {
 

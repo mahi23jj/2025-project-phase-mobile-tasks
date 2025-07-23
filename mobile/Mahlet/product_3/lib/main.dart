@@ -21,19 +21,19 @@ class MyApp extends StatelessWidget {
         Widget page;
         switch (settings.name) {
           case '/edit':
-            page = EditFormpage();
+            page = const EditFormpage();
             break;
           case '/search':
             page = Searchpage();
             break;
           case '/description':
-            page = Description();
+            page = const Description();
             break;
           case '/productform':
-            page = ProductFormPage();
+            page = const ProductFormPage();
             break;
           default:
-            page = Homepage();
+            page = const Homepage();
             break;
         }
         return _buildPageRoute(page, settings);

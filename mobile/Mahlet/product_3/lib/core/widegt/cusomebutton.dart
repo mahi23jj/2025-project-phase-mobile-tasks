@@ -6,7 +6,7 @@ class Cusomebutton extends StatelessWidget {
   final BoxBorder? border;
   final String text;
   final TextStyle? style;
-  Cusomebutton({
+  const Cusomebutton({
     super.key,
     this.backgroundColor,
     this.width,
@@ -28,7 +28,7 @@ class Cusomebutton extends StatelessWidget {
       ),
       child: Text(
         text,
-        style: style ?? TextStyle(fontSize: 14, color: Colors.white),
+        style: style ?? const TextStyle(fontSize: 14, color: Colors.white),
       ),
     );
   }

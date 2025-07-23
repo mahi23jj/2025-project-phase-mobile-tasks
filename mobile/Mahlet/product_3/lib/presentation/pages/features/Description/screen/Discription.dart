@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:product_3/core/App_route.dart';
+import 'package:product_3/core/app_route.dart';
 import 'package:product_3/presentation/pages/features/Description/widget/Custome_size_widget.dart';
 import 'package:product_3/core/style.dart';
 import 'package:product_3/core/widegt/cusomebutton.dart';
 import 'package:product_3/core/widegt/custome_arrow_back.dart';
-import 'package:product_3/domain/Entity/product_Entity.dart';
+import 'package:product_3/domain/Entity/product_entity.dart';
 import 'package:product_3/oprations.dart';
 
 class Description extends StatefulWidget {

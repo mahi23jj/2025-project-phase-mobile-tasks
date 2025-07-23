@@ -1,9 +1,7 @@
-
-
 import 'package:dartz/dartz.dart';
-import 'package:product_3/domain/Entity/product_Entity.dart';
 
 import '../../core/Error/error.dart';
+import '../Entity/product_entity.dart';
 
 abstract class ProductRepository {
   Future<Either<Failure, List<Product>>> getAllProduct();

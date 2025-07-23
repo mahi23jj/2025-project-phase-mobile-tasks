@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:product_3/domain/Entity/product_Entity.dart';
+import 'package:product_3/domain/Entity/product_entity.dart';
 import 'package:product_3/presentation/pages/features/Home/widget/custome_Icon.dart';
 import 'package:product_3/presentation/pages/features/Home/widget/customecard.dart';
 import 'package:product_3/presentation/pages/features/Search/widget/serach.dart';
