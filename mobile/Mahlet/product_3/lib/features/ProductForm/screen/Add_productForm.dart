@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:product_3/ProductForm/widget/customeTextForm.dart';
+import 'package:product_3/features/Home/data/cardmodel.dart';
+import 'package:product_3/features/ProductForm/widget/customeTextForm.dart';
 import 'package:product_3/core/style.dart';
 import 'package:product_3/core/widegt/cusomebutton.dart';
 import 'package:product_3/core/widegt/customeDropDown.dart';
 import 'package:product_3/core/widegt/custome_arrow_back.dart';
+
+import '../../../oprations.dart';
 
 class ProductFormPage extends StatefulWidget {
   const ProductFormPage({super.key});
@@ -23,13 +26,19 @@ class _ProductFormPageState extends State<ProductFormPage> {
   @override
   Widget build(BuildContext context) {
     final spacer = SizedBox(height: 20);
+    final Oprations operations =
+        ModalRoute.of(context)!.settings.arguments as Oprations;
 
     return Scaffold(
       appBar: AppBar(
-        
         leading: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: CustomeArrowBack(),
+          child: CustomeArrowBack(
+            onTap: () {
+              // back to previous page using name route
+              Navigator.pop(context);
+            },
+          ),
         ),
         title: Text('Add Product', style: AppTextstyle.submidtextStyle),
         centerTitle: true,
@@ -111,7 +120,24 @@ class _ProductFormPageState extends State<ProductFormPage> {
             ),
 
             const SizedBox(height: 32),
-            Cusomebutton(text: 'ADD'),
+            GestureDetector(
+              onTap: () {
+                setState(() {
+                  operations.addToCart(
+                    Cardmodel(
+                      imageurl: 'asset/images/img1.jpg',
+                      title: _nameCtrl.text,
+                      subtitle: _category!,
+                      price: _priceCtrl.text,
+                      Discription: _descCtrl.text,
+                    ),
+                  );
+//  Navigator.pop(context); // go back after adding
+                  print(operations.Cards.length);
+                });
+              },
+              child: Cusomebutton(text: 'ADD'),
+            ),
             const SizedBox(height: 10),
 
             Cusomebutton(

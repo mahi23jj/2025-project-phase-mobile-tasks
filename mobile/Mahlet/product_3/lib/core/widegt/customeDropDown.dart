@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:product_3/ProductForm/widget/customeTextForm.dart';
+import 'package:product_3/features/ProductForm/widget/customeTextForm.dart';
 
 class CustomDropdown extends StatelessWidget {
   final void Function(String?) onChanged;
@@ -26,7 +26,7 @@ class CustomDropdown extends StatelessWidget {
       ),
       items: const [
         DropdownMenuItem(value: 'Clothing', child: Text('Clothing')),
-        DropdownMenuItem(value: 'Accessories', child: Text('Accessories')),
+        DropdownMenuItem(value: 'Men’s shoe', child: Text('Men’s shoe')),
         DropdownMenuItem(value: 'Books', child: Text('Books')),
         DropdownMenuItem(value: 'Other', child: Text('Other')),
       ],

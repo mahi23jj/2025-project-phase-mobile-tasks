@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:product_3/Home/data/cardmodel.dart';
+import 'package:product_3/features/Home/data/cardmodel.dart';
 import 'package:product_3/core/style.dart';
 
 class Customecard extends StatelessWidget {
@@ -43,16 +43,16 @@ class Customecard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(cardmodel.subtitle, style: AppTextstyle.subtextStyle),
-                Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Icon(Icons.star, color: Colors.amber, size: 12),
-                    Text(
-                      '(${cardmodel.rating})',
-                      style: AppTextstyle.subtextStyle,
-                    ),
-                  ],
-                ),
+                // Row(
+                //   mainAxisSize: MainAxisSize.min,
+                //   children: [
+                //     Icon(Icons.star, color: Colors.amber, size: 12),
+                //     Text(
+                //       '(${cardmodel.rating})',
+                //       style: AppTextstyle.subtextStyle,
+                //     ),
+                //   ],
+                // ),
               ],
             ),
           ),

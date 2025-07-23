@@ -1,15 +1,19 @@
 class Cardmodel {
+  int id;
   String imageurl;
   String title;
   String subtitle;
+  String Discription;
   String price;
-  String rating;
+
 
   Cardmodel({
-    required this.imageurl,
+    this.id = 0,
+   required  this.imageurl,
     required this.title,
     required this.subtitle,
     required this.price,
-    required this.rating,
+
+    required this.Discription,
   });
 }
