@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:product_3/features/Home/data/cardmodel.dart';
-import 'package:product_3/features/Home/widget/custome_Icon.dart';
-import 'package:product_3/features/Home/widget/customecard.dart';
-import 'package:product_3/features/Search/widget/serach.dart';
+import 'package:product_3/domain/Entity/product_Entity.dart';
+import 'package:product_3/presentation/pages/features/Home/widget/custome_Icon.dart';
+import 'package:product_3/presentation/pages/features/Home/widget/customecard.dart';
+import 'package:product_3/presentation/pages/features/Search/widget/serach.dart';
 import 'package:product_3/core/style.dart';
 import 'package:product_3/core/widegt/custome_arrow_back.dart';
 
 class Searchpage extends StatelessWidget {
   Searchpage({super.key});
 
-  List<Cardmodel> cards = [
+  List<Product> cards = [
     // Cardmodel(
     //   imageurl: 'asset/images/img1.jpg',
     //   price: '\$100',

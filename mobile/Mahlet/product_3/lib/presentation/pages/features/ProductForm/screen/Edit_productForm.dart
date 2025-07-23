@@ -1,33 +1,47 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:product_3/features/Home/data/cardmodel.dart';
-import 'package:product_3/features/ProductForm/widget/customeTextForm.dart';
-import 'package:product_3/core/style.dart';
-import 'package:product_3/core/widegt/cusomebutton.dart';
-import 'package:product_3/core/widegt/customeDropDown.dart';
-import 'package:product_3/core/widegt/custome_arrow_back.dart';
 
-import '../../../oprations.dart';
 
-class ProductFormPage extends StatefulWidget {
-  const ProductFormPage({super.key});
+import '../../../../../core/style.dart';
+import '../../../../../core/widegt/cusomebutton.dart';
+import '../../../../../core/widegt/customeDropDown.dart';
+import '../../../../../core/widegt/custome_arrow_back.dart';
+import '../../../../../oprations.dart';
+import '../../../../../domain/Entity/product_Entity.dart';
+import '../widget/customeTextForm.dart';
+
+class EditFormpage extends StatefulWidget {
+  const EditFormpage({super.key});
 
   @override
-  State<ProductFormPage> createState() => _ProductFormPageState();
+  State<EditFormpage> createState() => _EditFormpageState();
 }
 
-class _ProductFormPageState extends State<ProductFormPage> {
+class _EditFormpageState extends State<EditFormpage> {
   final _nameCtrl = TextEditingController();
   final _priceCtrl = TextEditingController();
   final _descCtrl = TextEditingController();
 
   String? _category;
 
+  late Product cardmodel;
+  late Oprations operations;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final args = ModalRoute.of(context)!.settings.arguments as Map;
+    cardmodel = args["card"];
+    operations = args["operations"];
+
+    _nameCtrl.text = cardmodel.title;
+    _priceCtrl.text = cardmodel.price;
+    _descCtrl.text = cardmodel.discription;
+    _category = cardmodel.subtitle;
+  }
+
   @override
   Widget build(BuildContext context) {
     final spacer = SizedBox(height: 20);
-    final Oprations operations =
-        ModalRoute.of(context)!.settings.arguments as Oprations;
 
     return Scaffold(
       appBar: AppBar(
@@ -40,7 +54,7 @@ class _ProductFormPageState extends State<ProductFormPage> {
             },
           ),
         ),
-        title: Text('Add Product', style: AppTextstyle.submidtextStyle),
+        title: Text('Edit Product', style: AppTextstyle.submidtextStyle),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
@@ -122,30 +136,23 @@ class _ProductFormPageState extends State<ProductFormPage> {
             const SizedBox(height: 32),
             GestureDetector(
               onTap: () {
-                setState(() {
-                  operations.addToCart(
-                    Cardmodel(
-                      imageurl: 'asset/images/img1.jpg',
-                      title: _nameCtrl.text,
-                      subtitle: _category!,
-                      price: _priceCtrl.text,
-                      Discription: _descCtrl.text,
-                    ),
-                  );
-//  Navigator.pop(context); // go back after adding
-                  print(operations.Cards.length);
-                });
+                operations.editproduct(
+                  cardmodel.id,
+                  Product(
+                    id: cardmodel.id,
+                    imageurl: 'asset/images/img1.jpg',
+                    title: _nameCtrl.text,
+                    subtitle: _category!,
+                    price: _priceCtrl.text,
+                    discription: _descCtrl.text,
+                  ),
+                );
+                // Navigator.pushNamed(context, AppRoute.home);
+                Navigator.pop(context); // go back after adding
               },
-              child: Cusomebutton(text: 'ADD'),
+              child: Cusomebutton(text: 'Edit'),
             ),
             const SizedBox(height: 10),
-
-            Cusomebutton(
-              text: 'DELETE',
-              backgroundColor: Colors.white,
-              border: Border.all(color: Colors.red, width: 1),
-              style: GoogleFonts.poppins(color: Colors.red, fontSize: 14),
-            ),
           ],
         ),
       ),

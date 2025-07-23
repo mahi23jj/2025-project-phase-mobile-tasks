@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:product_3/core/App_route.dart';
-import 'package:product_3/features/Description/widget/Custome_size_widget.dart';
+import 'package:product_3/presentation/pages/features/Description/widget/Custome_size_widget.dart';
 import 'package:product_3/core/style.dart';
 import 'package:product_3/core/widegt/cusomebutton.dart';
 import 'package:product_3/core/widegt/custome_arrow_back.dart';
-import 'package:product_3/features/Home/data/cardmodel.dart';
+import 'package:product_3/domain/Entity/product_Entity.dart';
 import 'package:product_3/oprations.dart';
 
 class Description extends StatefulWidget {
@@ -18,7 +18,7 @@ class _DescriptionState extends State<Description> {
 
 
   late  Oprations oprations;
-  late   Cardmodel card;
+  late   Product card;
 
 @override
 void didChangeDependencies() {
@@ -31,7 +31,7 @@ void didChangeDependencies() {
   Widget build(BuildContext context) {
    
 
-      final Cardmodel cardmodel =
+      final Product Products =
       oprations.Cards.firstWhere((c) => c.id == card.id);
 
     return Scaffold(
@@ -43,7 +43,7 @@ void didChangeDependencies() {
               ClipRRect(
                 // borderRadius: BorderRadius.circular(10),
                 child: Image.asset(
-                  cardmodel.imageurl,
+                  Products.imageurl,
                   fit: BoxFit.cover,
                   height: 300,
                   width: double.infinity,
@@ -68,7 +68,7 @@ void didChangeDependencies() {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      cardmodel.subtitle,
+                      Products.subtitle,
                       style: AppTextstyle.subtextStyle.copyWith(fontSize: 14),
                     ),
                   ],
@@ -77,8 +77,8 @@ void didChangeDependencies() {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(cardmodel.title, style: AppTextstyle.midtextStyle),
-                    Text(cardmodel.price, style: AppTextstyle.bodytextStyle),
+                    Text(Products.title, style: AppTextstyle.midtextStyle),
+                    Text(Products.price, style: AppTextstyle.bodytextStyle),
                   ],
                 ),
                 SizedBox(height: 10),
@@ -89,7 +89,7 @@ void didChangeDependencies() {
                 SizedBox(height: 10),
 
                 Text(
-                  cardmodel.Discription,
+                  Products.discription,
                   style: AppTextstyle.bodytextStyle.copyWith(
                     fontWeight: FontWeight.w300,
                     letterSpacing: 1.2,
@@ -102,7 +102,7 @@ void didChangeDependencies() {
                     GestureDetector(
                       onTap: () {
                         setState(() {
-                          oprations.removeFromCart(cardmodel.id);
+                          oprations.removeFromCart(Products.id);
                         });
                         Navigator.pop(context);
                       },
@@ -122,7 +122,7 @@ void didChangeDependencies() {
                           context,
                           AppRoute.edit,
                           arguments: {
-                            "card": cardmodel,
+                            "card": Product,
                             "operations": oprations,
                           },
                         ).then((_) {

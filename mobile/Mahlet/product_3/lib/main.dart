@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import 'features/Description/screen/Discription.dart';
-import 'features/Home/screen/Home_page.dart';
-import 'features/ProductForm/screen/Add_productForm.dart';
-import 'features/ProductForm/screen/Edit_productForm.dart';
-import 'features/Search/screen/search.dart';
+import 'presentation/pages/features/Description/screen/Discription.dart';
+import 'presentation/pages/features/Home/screen/Home_page.dart';
+import 'presentation/pages/features/ProductForm/screen/Add_productForm.dart';
+import 'presentation/pages/features/ProductForm/screen/Edit_productForm.dart';
+import 'presentation/pages/features/Search/screen/search.dart';
 
 void main() {
   runApp(const MyApp());

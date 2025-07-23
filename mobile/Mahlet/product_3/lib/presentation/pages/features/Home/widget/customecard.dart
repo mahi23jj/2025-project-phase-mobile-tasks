@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:product_3/features/Home/data/cardmodel.dart';
+import 'package:product_3/domain/Entity/product_Entity.dart';
 import 'package:product_3/core/style.dart';
 
 class Customecard extends StatelessWidget {
-  Cardmodel cardmodel;
+  Product cardmodel;
   Customecard({super.key, required this.cardmodel});
 
   @override
