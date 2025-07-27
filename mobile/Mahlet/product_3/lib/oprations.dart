@@ -1,4 +1,4 @@
-import 'domain/Entity/product_entity.dart';
+import 'features/product/domain/Entity/product_entity.dart';
 
 class Oprations {
 
@@ -7,7 +7,7 @@ class Oprations {
     Product(
       id: 1,
       imageurl: 'asset/images/img1.jpg',
-      price: '\$100',
+      price: 100,
 
       subtitle: 'Men’s shoe',
       title: 'Derby Leather Shoes',
@@ -17,7 +17,7 @@ class Oprations {
     Product(
       id: 2,
       imageurl: 'asset/images/img3.jpg',
-      price: '\$110',
+      price: 110,
 
       subtitle: 'Womens’s shoe',
       title: 'chenoles Hill Shoes',
@@ -26,7 +26,7 @@ class Oprations {
     Product(
       id: 3,
       imageurl: 'asset/images/img2.jpg',
-      price: '\$200',
+      price: 200,
 
       subtitle: 'Children’s shoe',
       title: 'FAN KA HAO Shoes',
