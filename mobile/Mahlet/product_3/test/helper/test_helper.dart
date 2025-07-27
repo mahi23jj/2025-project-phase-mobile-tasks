@@ -4,6 +4,8 @@ import 'package:product_3/core/platform/network_info.dart';
 import 'package:product_3/features/product/data/data_source/local_data_source.dart';
 import 'package:product_3/features/product/data/data_source/remote_data_source.dart';
 import 'package:product_3/features/product/domain/Repository/product_repository.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
+
 
 @GenerateMocks(
   [
@@ -11,6 +13,9 @@ import 'package:product_3/features/product/domain/Repository/product_repository.
     ProductLocalDataSource,
     ProductRemoteDataSource,
     NetworkInfo,
+     InternetConnectionChecker,
+   
+
   ],
   // customeMock using http
   customMocks: [MockSpec<http.Client>(as: #MockHttpClient)],

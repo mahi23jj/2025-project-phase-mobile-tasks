@@ -37,6 +37,7 @@ dependencies:
   google_fonts:
   dartz:
   equatable: 
+  internet_connection_checker :
   
 
 dev_dependencies:
