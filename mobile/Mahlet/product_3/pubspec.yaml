@@ -39,6 +39,7 @@ dependencies:
   equatable: 
   internet_connection_checker :
   shared_preferences: 
+  http: 
   
 
 dev_dependencies:

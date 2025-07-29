@@ -7,5 +7,5 @@ abstract class ProductLocalDataSource {
   Future<ProductModel> getProductById(int id);
   Future<ProductModel> addProduct(Product product);
   Future<ProductModel> updateProduct(int id, Product product);
-  Future<ProductModel> deleteProduct(int id);
+  Future<void> deleteProduct(int id);
 }

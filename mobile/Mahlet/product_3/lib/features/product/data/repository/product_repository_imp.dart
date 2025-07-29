@@ -98,7 +98,7 @@ class ProductRepositoryImp extends ProductRepository {
   }
 
   @override
-  Future<Either<Failure, Product>> deleteProduct(int id) async {
+  Future<Either<Failure, void>> deleteProduct(int id) async {
     if (await networkInfo.isConnected) {
       try {
         final remoteProduct = await productRemoteDataSource.deleteProduct(id);

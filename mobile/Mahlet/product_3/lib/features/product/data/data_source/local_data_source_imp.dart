@@ -31,7 +31,7 @@ class LocalDataSourceImp extends ProductLocalDataSource {
     final encode = jsonEncode(products.map((e) => e.toJson()).toList());
     await sharedpreferences.setString(_cacheKey, encode);
   }
-
+  
   @override
   Future<ProductModel> getProductById(int id) async {
     try {
@@ -80,7 +80,7 @@ class LocalDataSourceImp extends ProductLocalDataSource {
   }
 
   @override
-  Future<ProductModel> deleteProduct(int id) async {
+  Future<void> deleteProduct(int id) async {
     final productList = await getlastProducts();
 
     final index = productList.indexWhere((item) => item.id == id);
@@ -91,7 +91,7 @@ class LocalDataSourceImp extends ProductLocalDataSource {
       final updatedJson = jsonEncode(productList.map((e) => e.toJson()).toList());
       await sharedpreferences.setString(_cacheKey, updatedJson);
 
-      return deletedProduct;
+    
     } else {
       throw CacheException();
     }
