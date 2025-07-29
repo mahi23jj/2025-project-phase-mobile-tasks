@@ -7,6 +7,7 @@ import '../../domain/Entity/product_entity.dart';
 import '../../domain/Repository/product_repository.dart';
 import '../data_source/local_data_source.dart';
 import '../data_source/remote_data_source.dart';
+import '../model/product_model.dart';
 
 class ProductRepositoryImp extends ProductRepository {
   final ProductLocalDataSource productLocalDataSource;

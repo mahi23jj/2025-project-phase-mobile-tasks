@@ -5,6 +5,7 @@ import 'package:product_3/features/product/data/data_source/local_data_source.da
 import 'package:product_3/features/product/data/data_source/remote_data_source.dart';
 import 'package:product_3/features/product/domain/Repository/product_repository.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 
 @GenerateMocks(
@@ -14,6 +15,7 @@ import 'package:internet_connection_checker/internet_connection_checker.dart';
     ProductRemoteDataSource,
     NetworkInfo,
      InternetConnectionChecker,
+      SharedPreferences
    
 
   ],

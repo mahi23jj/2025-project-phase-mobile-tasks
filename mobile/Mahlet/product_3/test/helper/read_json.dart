@@ -1,5 +1,11 @@
 import 'dart:io';
 
 String readJson(String fileName) {
-  return File('C:/Users/solom/flutter project/A2SV/Practice/mobile/Mahlet/product_3/test/helper/$fileName.json').readAsStringSync();
+  try {
+    final path = 'test/helper/$fileName.json'; // Make sure this is correct
+    final contents = File(path).readAsStringSync();
+    return contents;
+  } catch (e) {
+    rethrow;
+  }
 }

@@ -330,8 +330,8 @@ void main() {
 
         final result = await productRepositoryImp.getProductById(tId);
 
-        verify(productLocalDataSource.getProductById(tId));
         expect(result, equals(Left(CacheFailure())));
+        verify(productLocalDataSource.getProductById(tId));
       });
     });
   });

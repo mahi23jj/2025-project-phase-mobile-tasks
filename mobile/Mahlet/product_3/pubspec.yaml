@@ -38,6 +38,7 @@ dependencies:
   dartz:
   equatable: 
   internet_connection_checker :
+  shared_preferences: 
   
 
 dev_dependencies:
