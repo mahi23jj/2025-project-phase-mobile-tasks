@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:product_3/core/app_route.dart';
-import 'package:product_3/features/product/presentation/pages/features/Description/widget/Custome_size_widget.dart';
+import 'package:product_3/features/product/presentation/pages/Description/widget/Custome_size_widget.dart';
 import 'package:product_3/core/style.dart';
 import 'package:product_3/core/widegt/cusomebutton.dart';
 import 'package:product_3/core/widegt/custome_arrow_back.dart';

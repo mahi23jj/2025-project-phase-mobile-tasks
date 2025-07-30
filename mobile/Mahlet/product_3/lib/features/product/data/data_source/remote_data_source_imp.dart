@@ -15,7 +15,7 @@ class RemoteDataSourceImp extends ProductRemoteDataSource {
   Future<List<ProductModel>> getAllProduct() async {
     final result = await client.get(
       headers: {'Content-Type': 'application/json'},
-      Uri.parse('https://fakestoreapi.com/products'),
+      Uri.parse('https://g5-flutter-learning-path-be.onrender.com/api/v1/products'),
     );
 
     if (result.statusCode == 200) {

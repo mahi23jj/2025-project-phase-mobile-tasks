@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:product_3/features/product/domain/Entity/product_entity.dart';
-import 'package:product_3/features/product/presentation/pages/features/Home/widget/custome_Icon.dart';
-import 'package:product_3/features/product/presentation/pages/features/Home/widget/customecard.dart';
+import 'package:product_3/features/product/presentation/pages/Home/widget/custome_Icon.dart';
+import 'package:product_3/features/product/presentation/pages/Home/widget/customecard.dart';
 import 'package:product_3/core/app_route.dart';
 import 'package:product_3/core/style.dart';
 import 'package:product_3/oprations.dart';

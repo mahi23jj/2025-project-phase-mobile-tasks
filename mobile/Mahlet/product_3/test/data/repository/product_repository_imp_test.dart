@@ -8,7 +8,7 @@ import 'package:product_3/features/product/data/data_source/local_data_source.da
 import 'package:product_3/features/product/data/data_source/remote_data_source.dart';
 import 'package:product_3/features/product/data/model/product_model.dart';
 import 'package:product_3/features/product/data/repository/product_repository_imp.dart';
-import 'package:product_3/features/product/domain/Entity/product_Entity.dart';
+import 'package:product_3/features/product/domain/Entity/product_entity.dart';
 
 import '../../helper/test_helper.mocks.dart';
 

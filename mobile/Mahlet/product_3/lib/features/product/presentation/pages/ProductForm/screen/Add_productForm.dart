@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:product_3/features/product/domain/Entity/product_entity.dart';
-import 'package:product_3/features/product/presentation/pages/features/ProductForm/widget/customeTextForm.dart';
+import 'package:product_3/features/product/presentation/pages/ProductForm/widget/customeTextForm.dart';
 import 'package:product_3/core/style.dart';
 import 'package:product_3/core/widegt/cusomebutton.dart';
 import 'package:product_3/core/widegt/custome_drop_down.dart';
 import 'package:product_3/core/widegt/custome_arrow_back.dart';
 
-import '../../../../../../../oprations.dart';
+import '../../../../../../oprations.dart';
 
 class ProductFormPage extends StatefulWidget {
   const ProductFormPage({super.key});
