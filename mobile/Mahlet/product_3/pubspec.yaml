@@ -40,8 +40,8 @@ dependencies:
   internet_connection_checker :
   shared_preferences: 
   http: 
-  bloc: 
-  
+  bloc:
+  get_it: 
 
 dev_dependencies:
   flutter_test:

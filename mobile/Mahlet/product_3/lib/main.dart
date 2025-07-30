@@ -5,8 +5,12 @@ import 'features/product/presentation/pages/Home/screen/Home_page.dart';
 import 'features/product/presentation/pages/ProductForm/screen/Add_productForm.dart';
 import 'features/product/presentation/pages/ProductForm/screen/Edit_productForm.dart';
 import 'features/product/presentation/pages/screen/search.dart';
+import 'features/product/injection_container.dart' as di;
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await di.init();
+  
   runApp(const MyApp());
 }
 
