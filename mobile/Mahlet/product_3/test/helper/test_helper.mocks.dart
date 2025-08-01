@@ -112,7 +112,7 @@ class MockProductRepository extends _i1.Mock implements _i6.ProductRepository {
           as _i7.Future<_i2.Either<_i8.Failure, List<_i9.Product>>>);
 
   @override
-  _i7.Future<_i2.Either<_i8.Failure, _i9.Product>> getProductById(int? id) =>
+  _i7.Future<_i2.Either<_i8.Failure, _i9.Product>> getProductById(String? id) =>
       (super.noSuchMethod(
             Invocation.method(#getProductById, [id]),
             returnValue: _i7.Future<_i2.Either<_i8.Failure, _i9.Product>>.value(
@@ -141,7 +141,7 @@ class MockProductRepository extends _i1.Mock implements _i6.ProductRepository {
 
   @override
   _i7.Future<_i2.Either<_i8.Failure, _i9.Product>> updateProduct(
-    int? id,
+    String? id,
     _i9.Product? product,
   ) =>
       (super.noSuchMethod(
@@ -156,7 +156,7 @@ class MockProductRepository extends _i1.Mock implements _i6.ProductRepository {
           as _i7.Future<_i2.Either<_i8.Failure, _i9.Product>>);
 
   @override
-  _i7.Future<_i2.Either<_i8.Failure, void>> deleteProduct(int? id) =>
+  _i7.Future<_i2.Either<_i8.Failure, void>> deleteProduct(String? id) =>
       (super.noSuchMethod(
             Invocation.method(#deleteProduct, [id]),
             returnValue: _i7.Future<_i2.Either<_i8.Failure, void>>.value(
@@ -198,7 +198,7 @@ class MockProductLocalDataSource extends _i1.Mock
           as _i7.Future<void>);
 
   @override
-  _i7.Future<_i3.ProductModel> getProductById(int? id) =>
+  _i7.Future<_i3.ProductModel> getProductById(String? id) =>
       (super.noSuchMethod(
             Invocation.method(#getProductById, [id]),
             returnValue: _i7.Future<_i3.ProductModel>.value(
@@ -224,7 +224,10 @@ class MockProductLocalDataSource extends _i1.Mock
           as _i7.Future<_i3.ProductModel>);
 
   @override
-  _i7.Future<_i3.ProductModel> updateProduct(int? id, _i9.Product? product) =>
+  _i7.Future<_i3.ProductModel> updateProduct(
+    String? id,
+    _i9.Product? product,
+  ) =>
       (super.noSuchMethod(
             Invocation.method(#updateProduct, [id, product]),
             returnValue: _i7.Future<_i3.ProductModel>.value(
@@ -237,7 +240,7 @@ class MockProductLocalDataSource extends _i1.Mock
           as _i7.Future<_i3.ProductModel>);
 
   @override
-  _i7.Future<void> deleteProduct(int? id) =>
+  _i7.Future<void> deleteProduct(String? id) =>
       (super.noSuchMethod(
             Invocation.method(#deleteProduct, [id]),
             returnValue: _i7.Future<void>.value(),
@@ -266,7 +269,7 @@ class MockProductRemoteDataSource extends _i1.Mock
           as _i7.Future<List<_i3.ProductModel>>);
 
   @override
-  _i7.Future<_i3.ProductModel> getProductById(int? id) =>
+  _i7.Future<_i3.ProductModel> getProductById(String? id) =>
       (super.noSuchMethod(
             Invocation.method(#getProductById, [id]),
             returnValue: _i7.Future<_i3.ProductModel>.value(
@@ -292,7 +295,10 @@ class MockProductRemoteDataSource extends _i1.Mock
           as _i7.Future<_i3.ProductModel>);
 
   @override
-  _i7.Future<_i3.ProductModel> updateProduct(int? id, _i9.Product? product) =>
+  _i7.Future<_i3.ProductModel> updateProduct(
+    String? id,
+    _i9.Product? product,
+  ) =>
       (super.noSuchMethod(
             Invocation.method(#updateProduct, [id, product]),
             returnValue: _i7.Future<_i3.ProductModel>.value(
@@ -305,7 +311,7 @@ class MockProductRemoteDataSource extends _i1.Mock
           as _i7.Future<_i3.ProductModel>);
 
   @override
-  _i7.Future<void> deleteProduct(int? id) =>
+  _i7.Future<void> deleteProduct(String? id) =>
       (super.noSuchMethod(
             Invocation.method(#deleteProduct, [id]),
             returnValue: _i7.Future<void>.value(),
@@ -933,7 +939,7 @@ class MockDeleteProduct extends _i1.Mock implements _i18.DeleteProduct {
           as _i6.ProductRepository);
 
   @override
-  _i7.Future<_i2.Either<_i8.Failure, void>> call(int? id) =>
+  _i7.Future<_i2.Either<_i8.Failure, void>> call(String? id) =>
       (super.noSuchMethod(
             Invocation.method(#call, [id]),
             returnValue: _i7.Future<_i2.Either<_i8.Failure, void>>.value(
@@ -967,7 +973,7 @@ class MockUpdateProduct extends _i1.Mock implements _i19.UpdateProduct {
 
   @override
   _i7.Future<_i2.Either<_i8.Failure, _i9.Product>> call(
-    int? id,
+    String? id,
     _i9.Product? product,
   ) =>
       (super.noSuchMethod(
@@ -1036,7 +1042,7 @@ class MockViewSingleProduct extends _i1.Mock implements _i21.ViewSingleProduct {
           as _i6.ProductRepository);
 
   @override
-  _i7.Future<_i2.Either<_i8.Failure, _i9.Product>> call(int? id) =>
+  _i7.Future<_i2.Either<_i8.Failure, _i9.Product>> call(String? id) =>
       (super.noSuchMethod(
             Invocation.method(#call, [id]),
             returnValue: _i7.Future<_i2.Either<_i8.Failure, _i9.Product>>.value(

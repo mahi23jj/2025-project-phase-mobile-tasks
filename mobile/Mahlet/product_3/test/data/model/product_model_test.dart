@@ -9,12 +9,11 @@ import '../../helper/read_json.dart';
 
 void main() {
   final productModel = ProductModel(
-    id: 1,
+    id: 'a1',
     discription: 'jfjw',
     imageurl: 'wah',
     title: 'wjeq',
     price: 12.0,
-    subtitle: 'hfj',
   );
   
   test('Product Model should be a subclass of ProductEntity', () async {

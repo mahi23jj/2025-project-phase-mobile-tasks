@@ -4,8 +4,8 @@ import '../model/product_model.dart';
 abstract class ProductLocalDataSource {
   Future<List<ProductModel>> getlastProducts();
   Future<void> cacheProduct(List<ProductModel> products);
-  Future<ProductModel> getProductById(int id);
+  Future<ProductModel> getProductById(String id);
   Future<ProductModel> addProduct(Product product);
-  Future<ProductModel> updateProduct(int id, Product product);
-  Future<void> deleteProduct(int id);
+  Future<ProductModel> updateProduct(String id, Product product);
+  Future<void> deleteProduct(String id);
 }

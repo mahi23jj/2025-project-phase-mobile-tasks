@@ -6,9 +6,9 @@ import '../Entity/product_entity.dart';
 
 abstract class ProductRepository {
   Future<Either<Failure, List<Product>>> getAllProduct();
-  Future<Either<Failure, Product>> getProductById(int id);
+  Future<Either<Failure, Product>> getProductById(String id);
   Future<Either<Failure, Product>> addProduct(Product product);
-  Future<Either<Failure, Product>> updateProduct(int id,Product product);
-  Future<Either<Failure, void>> deleteProduct(int id);
+  Future<Either<Failure, Product>> updateProduct(String id,Product product);
+  Future<Either<Failure, void>> deleteProduct(String id);
 
 }

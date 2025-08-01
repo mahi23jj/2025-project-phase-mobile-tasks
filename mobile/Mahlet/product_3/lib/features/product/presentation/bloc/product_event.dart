@@ -12,7 +12,7 @@ abstract class ProductEvent extends Equatable {
 class LoadAllProductsEvent extends ProductEvent {}
 
 class GetSingleProductEvent extends ProductEvent {
-  final int id;
+  final String id;
   GetSingleProductEvent(this.id);
 }
 
@@ -22,12 +22,12 @@ class CreateProductEvent extends ProductEvent {
 }
 
 class UpdateProductEvent extends ProductEvent {
-  final int id;
+  final String id;
   final Product product;
   UpdateProductEvent(this.id, this.product);
 }
 
 class DeleteProductEvent extends ProductEvent {
-  final int id;
+  final String id;
   DeleteProductEvent(this.id);
 }
