@@ -39,14 +39,9 @@ test/
 
 ## 🔁 Performed Task in this Separation
 
-### 🗂️ Data Layer
-- Implements repository contracts via: - task 12 
-  - Local Data Source
-  - Remote Data Source
-- Converts between `ProductModel` ⇄ `Product` using `fromJson` and `toJson`
-### 🗂️ Network Info - task 13
-- Implements Network info class:
-- Implement InternetConnectionChecker instance
+### 🗂️ Data Layer Remote DataSource
+- Implements Remote data source implementation
+- Implements test for Remote data source implementation
 ---
 
 ## 🧪 Testing
