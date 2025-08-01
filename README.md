@@ -39,9 +39,9 @@ test/
 
 ## 🔁 Performed Task in this Separation
 
-### 🗂️ Data Layer Remote DataSource
-- Implements Remote data source implementation
-- Implements test for Remote data source implementation
+### 🗂️ Dependancy Injection
+- Implements Dependency injection with git_it
+- 
 ---
 
 ## 🧪 Testing
@@ -72,7 +72,7 @@ Flutter SDK
 
 Dart >= 3.0
 
-flutter_bloc, mocktail, dartz, etc. installed
+flutter_bloc, mocktail, dartz, git_it etc. installed
 
 🛠️ Run Locally
 git clone https://github.com/mahi23jj/2025-project-phase-mobile-tasks.git
