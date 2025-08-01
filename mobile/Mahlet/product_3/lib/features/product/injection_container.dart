@@ -20,16 +20,20 @@ import 'presentation/bloc/product_bloc.dart';
 final sl = GetIt.instance;
 
 Future<void> init() async {
-  //  External dependencies
+  // External dependencies
   final sharedPreferences = await SharedPreferences.getInstance();
-  sl.registerLazySingleton(() => sharedPreferences);
-  sl.registerLazySingleton(() => Http.Client);
-  sl.registerLazySingleton(() => InternetConnectionChecker);
+  sl.registerLazySingleton<SharedPreferences>(() => sharedPreferences);
+
+  sl.registerLazySingleton<Http.Client>(() => Http.Client()); // FIXED
+sl.registerLazySingleton<InternetConnectionChecker>(
+  () => InternetConnectionChecker.createInstance(),
+);
+
 
   // Core
   sl.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(sl()));
 
-  //Data sources
+  // Data sources
   sl.registerLazySingleton<ProductLocalDataSource>(
     () => LocalDataSourceImp(sl()),
   );
