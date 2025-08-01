@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../../core/style.dart';
 import '../../../../../../core/widegt/cusomebutton.dart';
-import '../../../../../../core/widegt/custome_drop_down.dart';
+
 import '../../../../../../core/widegt/custome_arrow_back.dart';
-import '../../../../../../oprations.dart';
 import '../../../../domain/Entity/product_entity.dart';
+import '../../../bloc/product_bloc.dart';
+import '../../../bloc/product_event.dart';
 import '../widget/customeTextForm.dart';
 
 class EditFormpage extends StatefulWidget {
@@ -21,21 +22,17 @@ class _EditFormpageState extends State<EditFormpage> {
   final _priceCtrl = TextEditingController();
   final _descCtrl = TextEditingController();
 
-  String? _category;
+  // String? _category;
 
   late Product cardmodel;
-  late Oprations operations;
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
     final args = ModalRoute.of(context)!.settings.arguments as Map;
-    cardmodel = args["card"];
-    operations = args["operations"];
-
+    cardmodel = args['Product'];
     _nameCtrl.text = cardmodel.title;
     _priceCtrl.text = cardmodel.price.toString();
-    //cardmodel.price as double.toString();
     _descCtrl.text = cardmodel.discription;
   }
 
@@ -98,15 +95,6 @@ class _EditFormpageState extends State<EditFormpage> {
             ),
 
             spacer,
-            Text('category', style: AppTextstyle.bodytextStyle),
-            const SizedBox(height: 8),
-
-            CustomDropdown(
-              onChanged: (value) => setState(() => _category = value),
-              category: _category,
-            ),
-
-            spacer,
             Text('Price', style: AppTextstyle.bodytextStyle),
             const SizedBox(height: 8),
             TextFormField(
@@ -136,14 +124,17 @@ class _EditFormpageState extends State<EditFormpage> {
             const SizedBox(height: 32),
             GestureDetector(
               onTap: () {
-                operations.editproduct(
-                  cardmodel.id,
-                  Product(
-                    id: cardmodel.id,
-                    imageurl: 'asset/images/img1.jpg',
-                    title: _nameCtrl.text,
-                    price: _priceCtrl.text as double,
-                    discription: _descCtrl.text,
+                context.read<ProductBloc>().add(
+                  UpdateProductEvent(
+                    cardmodel.id,
+                    Product(
+                      id: cardmodel.id,
+                      title: _nameCtrl.text,
+                      price: double.parse(_priceCtrl.text),
+                      discription: _descCtrl.text,
+                      imageurl: cardmodel
+                          .imageurl, // Assuming image URL remains the same
+                    ),
                   ),
                 );
                 // Navigator.pushNamed(context, AppRoute.home);

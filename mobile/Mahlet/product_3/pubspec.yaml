@@ -40,7 +40,7 @@ dependencies:
   internet_connection_checker :
   shared_preferences: 
   http: 
-  bloc:
+  flutter_bloc:
   get_it: 
 
 dev_dependencies:

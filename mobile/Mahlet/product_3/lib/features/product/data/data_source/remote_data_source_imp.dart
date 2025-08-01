@@ -31,7 +31,7 @@ class RemoteDataSourceImp extends ProductRemoteDataSource {
   Future<ProductModel> getProductById(String id) async {
     final result = await client.get(
       headers: {'Content-Type': 'application/json'},
-      Uri.parse('https://fakestoreapi.com/products/$id'),
+      Uri.parse('https://g5-flutter-learning-path-be.onrender.com/api/v1/products/$id'),
     );
 
     if (result.statusCode == 200) {
@@ -48,7 +48,7 @@ class RemoteDataSourceImp extends ProductRemoteDataSource {
   final result = jsonEncode(productMap.toJson());
 
     final response = await client.post(
-      Uri.parse('https://fakestoreapi.com/products'),
+      Uri.parse('https://g5-flutter-learning-path-be.onrender.com/api/v1/products'),
       body: result,
       headers: {'Content-Type': 'application/json'},
     );
@@ -66,7 +66,7 @@ class RemoteDataSourceImp extends ProductRemoteDataSource {
   final result = jsonEncode(productMap.toJson());
 
    final response = await client.put(
-      Uri.parse('https://fakestoreapi.com/products/$id'),
+      Uri.parse('https://g5-flutter-learning-path-be.onrender.com/api/v1/products/$id'),
     body:result ,
       headers: {'Content-Type': 'application/json'},
     );
@@ -84,7 +84,7 @@ class RemoteDataSourceImp extends ProductRemoteDataSource {
   @override
   Future<void> deleteProduct(String id) async{
     final response = await client.delete(
-      Uri.parse('https://fakestoreapi.com/products/$id'),
+      Uri.parse('https://g5-flutter-learning-path-be.onrender.com/api/v1/products/$id'),
       headers: {'Content-Type': 'application/json'},
     );
 

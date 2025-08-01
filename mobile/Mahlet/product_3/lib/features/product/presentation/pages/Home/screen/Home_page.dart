@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:product_3/features/product/domain/Entity/product_entity.dart';
 import 'package:product_3/features/product/presentation/pages/Home/widget/custome_Icon.dart';
 import 'package:product_3/features/product/presentation/pages/Home/widget/customecard.dart';
 import 'package:product_3/core/app_route.dart';
 import 'package:product_3/core/style.dart';
 import 'package:product_3/oprations.dart';
+
+import '../../../bloc/product_bloc.dart';
+import '../../../bloc/product_event.dart';
+import '../../../bloc/product_state.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({super.key});
@@ -95,28 +100,36 @@ class _HomepageState extends State<Homepage> {
               ],
             ),
 
-            ListView.builder(
-              shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
-              itemCount: oprations.Cards.length,
-              itemBuilder: (context, index) => Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: GestureDetector(
-                  onTap: () {
-                    Navigator.pushNamed(
-                      context,
-                      AppRoute.productDetail,
-                      arguments: {
-                        "card": oprations.Cards[index],
-                        "operations": oprations,
-                      },
-                    ).then((_) {
-                      setState(() {});
-                    });
-                  },
-                  child: Customecard(cardmodel: oprations.Cards[index]),
-                ),
-              ),
+            BlocBuilder<ProductBloc, ProductState>(
+              builder: (context, state) {
+                if (state is ProductLoading) {
+                  return Center(child: CircularProgressIndicator());
+                } else if (state is ProductError) {
+                  return Center(child: Text('Error loading products'));
+                } else if (state is ProductLoaded) {
+                  return ListView.builder(
+                    shrinkWrap: true,
+                    physics: NeverScrollableScrollPhysics(),
+                    itemCount: state.products.length,
+                    itemBuilder: (context, index) => Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: GestureDetector(
+                        onTap: () {
+                          context.read<ProductBloc>().add(
+                            GetSingleProductEvent(state.products[index].id),
+                          );
+                          Navigator.pushNamed(context, AppRoute.productDetail,
+                          
+                         
+                          ) ;
+                        },
+                        child: Customecard(cardmodel: state.products[index]),
+                      ),
+                    ),
+                  );
+                }
+                return SizedBox.shrink();
+              },
             ),
           ],
         ),
