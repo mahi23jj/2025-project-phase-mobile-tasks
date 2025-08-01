@@ -21,6 +21,15 @@ void main() {
     remoteDataSourceImp = RemoteDataSourceImp(client: httpclient);
   });
 
+      String id = 'a1';
+ final item = ProductModel(
+      id: 'a1',
+      imageurl: 'https://example.com/image.png',
+      title: 'Test Product',
+      price: 100,
+      discription: 'This is a test product',
+    );
+
   group('getAllProducts', () {
     final tjsondata = jsonDecode(readJson('dummy')) as List;
     final tListProduct = tjsondata
@@ -61,15 +70,6 @@ void main() {
   });
 
   group('getProductbyid', () {
-    int id = 1;
-    final item = ProductModel(
-      id: 1,
-      imageurl: 'https://example.com/image.png',
-      title: 'Test Product',
-      subtitle: 'Test Subtitle',
-      price: 100,
-      discription: 'This is a test product',
-    );
 
     // to json
     final tjsondata = item.toJson();
@@ -109,15 +109,7 @@ void main() {
 
     group('addproduct', () {
 
-    final item = ProductModel(
-      id: 1,
-      imageurl: 'https://example.com/image.png',
-      title: 'Test Product',
-      subtitle: 'Test Subtitle',
-      price: 100,
-      discription: 'This is a test product',
-    );
-
+    
     // to json
     final tjsondata = jsonEncode(item.toJson());
 
@@ -172,17 +164,7 @@ void main() {
     // );
   });
 group('updateProduct', () {
-  final id = 1;
-
-  final item = ProductModel(
-    id: 1,
-    imageurl: 'https://example.com/image.png',
-    title: 'Updated Product',
-    subtitle: 'Updated Subtitle',
-    price: 200,
-    discription: 'This is an updated product',
-  );
-
+ 
   final tjsondata = jsonEncode(item.toJson());
 
   test(
@@ -221,7 +203,7 @@ group('updateProduct', () {
 });
 
 group('deleteProduct', () {
-  final id = 1;
+  final id = 'a1';
 
   test(
     'should delete a product successfully from remote data source',

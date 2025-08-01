@@ -28,7 +28,7 @@ class RemoteDataSourceImp extends ProductRemoteDataSource {
   }
 
   @override
-  Future<ProductModel> getProductById(int id) async {
+  Future<ProductModel> getProductById(String id) async {
     final result = await client.get(
       headers: {'Content-Type': 'application/json'},
       Uri.parse('https://fakestoreapi.com/products/$id'),
@@ -61,7 +61,7 @@ class RemoteDataSourceImp extends ProductRemoteDataSource {
   }
 
   @override
-  Future<ProductModel> updateProduct(int id, Product product) async{
+  Future<ProductModel> updateProduct(String id, Product product) async{
      final productMap = product as ProductModel;
   final result = jsonEncode(productMap.toJson());
 
@@ -82,7 +82,7 @@ class RemoteDataSourceImp extends ProductRemoteDataSource {
   }
 
   @override
-  Future<void> deleteProduct(int id) async{
+  Future<void> deleteProduct(String id) async{
     final response = await client.delete(
       Uri.parse('https://fakestoreapi.com/products/$id'),
       headers: {'Content-Type': 'application/json'},

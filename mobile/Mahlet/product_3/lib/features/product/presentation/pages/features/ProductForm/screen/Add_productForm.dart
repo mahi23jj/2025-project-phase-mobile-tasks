@@ -127,7 +127,6 @@ class _ProductFormPageState extends State<ProductFormPage> {
                     Product(
                       imageurl: 'asset/images/img1.jpg',
                       title: _nameCtrl.text,
-                      subtitle: _category!,
                       price: _priceCtrl.text as double,
                       discription: _descCtrl.text,
                     ),

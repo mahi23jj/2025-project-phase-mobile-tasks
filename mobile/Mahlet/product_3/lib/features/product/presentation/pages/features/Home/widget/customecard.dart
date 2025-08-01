@@ -37,25 +37,7 @@ class Customecard extends StatelessWidget {
               ],
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(left: 10, right: 10, bottom: 15),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(cardmodel.subtitle, style: AppTextstyle.subtextStyle),
-                // Row(
-                //   mainAxisSize: MainAxisSize.min,
-                //   children: [
-                //     Icon(Icons.star, color: Colors.amber, size: 12),
-                //     Text(
-                //       '(${cardmodel.rating})',
-                //       style: AppTextstyle.subtextStyle,
-                //     ),
-                //   ],
-                // ),
-              ],
-            ),
-          ),
+         
         ],
       ),
     );

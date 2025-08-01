@@ -64,15 +64,7 @@ void didChangeDependencies() {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      Products.subtitle,
-                      style: AppTextstyle.subtextStyle.copyWith(fontSize: 14),
-                    ),
-                  ],
-                ),
+            
                 SizedBox(height: 15),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -8,7 +8,7 @@ import '../Repository/product_repository.dart';
 class ViewSingleProduct {
   final ProductRepository productRepository;
    ViewSingleProduct(this.productRepository);
-   Future<Either<Failure, Product>> call(int id) async {
+   Future<Either<Failure, Product>> call(String id) async {
     return await productRepository.getProductById(id);
   }
 }

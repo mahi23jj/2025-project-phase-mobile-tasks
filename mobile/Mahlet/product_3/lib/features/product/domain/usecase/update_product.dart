@@ -6,7 +6,7 @@ class UpdateProduct {
 
   UpdateProduct(this.productRepository);
 
-  Future<void> call(int id,Product product) async {
+  Future<void> call(String id,Product product) async {
     await productRepository.updateProduct(id,product);
   }
 }

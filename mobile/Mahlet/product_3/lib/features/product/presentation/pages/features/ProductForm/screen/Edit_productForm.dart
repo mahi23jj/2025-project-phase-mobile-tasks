@@ -37,7 +37,6 @@ class _EditFormpageState extends State<EditFormpage> {
     _priceCtrl.text = cardmodel.price.toString();
     //cardmodel.price as double.toString();
     _descCtrl.text = cardmodel.discription;
-    _category = cardmodel.subtitle;
   }
 
   @override
@@ -143,7 +142,6 @@ class _EditFormpageState extends State<EditFormpage> {
                     id: cardmodel.id,
                     imageurl: 'asset/images/img1.jpg',
                     title: _nameCtrl.text,
-                    subtitle: _category!,
                     price: _priceCtrl.text as double,
                     discription: _descCtrl.text,
                   ),

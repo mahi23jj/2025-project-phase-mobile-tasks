@@ -29,6 +29,28 @@ void main() {
     );
   });
 
+
+
+  final tProductModels = [
+        ProductModel(
+          id: 'a1',
+          title: 'Test',
+          price: 2,
+          imageurl: 'url',
+          discription: 'desc',
+        ),
+      ];
+
+            final tProductModel = ProductModel(
+        id: 'a1',
+        title: 'Test',
+      
+        price: 2,
+        imageurl: 'url',
+        discription: 'desc',
+      );
+
+      String tid = 'a1';
   group('getAllProduct', () {
     test('to check the Network status ', () async {
       // arrange
@@ -44,16 +66,7 @@ void main() {
         when(networkInfo.isConnected).thenAnswer((_) async => true);
       });
 
-      final tProductModels = [
-        ProductModel(
-          id: 1,
-          title: 'Test',
-          subtitle: 'Sub',
-          price: 2,
-          imageurl: 'url',
-          discription: 'desc',
-        ),
-      ];
+    
 
       test(
         'should return the data locally when the remote data source is succesfull',
@@ -111,16 +124,6 @@ void main() {
         when(networkInfo.isConnected).thenAnswer((_) async => false);
       });
 
-      final tProductModels = [
-        ProductModel(
-          id: 1,
-          title: 'Test',
-          subtitle: 'Sub',
-          price: 2,
-          imageurl: 'url',
-          discription: 'desc',
-        ),
-      ];
 
       test('should return local data when the device is offline', () async {
         when(
@@ -168,32 +171,23 @@ void main() {
         when(networkInfo.isConnected).thenAnswer((_) async => true);
       });
 
-      final tProductModels = ProductModel(
-        id: 1,
-        title: 'Test',
-        subtitle: 'Sub',
-        price: 2,
-        imageurl: 'url',
-        discription: 'desc',
-      );
 
-      int tid = 1;
 
       test(
         'should update the data locally when the remote data source is succesfull',
         () async {
           when(
-            productRemoteDataSource.updateProduct(tid, tProductModels),
-          ).thenAnswer((_) async => tProductModels);
+            productRemoteDataSource.updateProduct(tid, tProductModel),
+          ).thenAnswer((_) async => tProductModel);
 
           final result = await productRepositoryImp.updateProduct(
             tid,
-            tProductModels,
+            tProductModel,
           );
 
-          verify(productRemoteDataSource.updateProduct(tid, tProductModels));
+          verify(productRemoteDataSource.updateProduct(tid, tProductModel));
 
-          expect(result, equals(Right(tProductModels)));
+          expect(result, equals(Right(tProductModel)));
         },
       );
 
@@ -201,16 +195,16 @@ void main() {
         'should return server error when the remote data source is unsuccesfull',
         () async {
           when(
-            productRemoteDataSource.updateProduct(tid, tProductModels),
+            productRemoteDataSource.updateProduct(tid, tProductModel),
           ).thenThrow(ServerException());
 
           final result = await productRepositoryImp.updateProduct(
             tid,
-            tProductModels,
+            tProductModel,
           );
 
           /// this check wather remote source is called or not
-          verify(productRemoteDataSource.updateProduct(tid, tProductModels));
+          verify(productRemoteDataSource.updateProduct(tid, tProductModel));
 
           /// this check does it throw server exception or not
           expect(result, equals(Left(ServerFailure())));
@@ -223,46 +217,37 @@ void main() {
         when(networkInfo.isConnected).thenAnswer((_) async => false);
       });
 
-      final tProductModels = ProductModel(
-        id: 1,
-        title: 'Test',
-        subtitle: 'Sub',
-        price: 2,
-        imageurl: 'url',
-        discription: 'desc',
-      );
 
-      int tid = 1;
 
       test('should return local data when the device is offline', () async {
         when(
-          productLocalDataSource.updateProduct(tid, tProductModels),
-        ).thenAnswer((_) async => tProductModels);
+          productLocalDataSource.updateProduct(tid, tProductModel),
+        ).thenAnswer((_) async => tProductModel);
 
         final result = await productRepositoryImp.updateProduct(
           tid,
-          tProductModels,
+          tProductModel,
         );
 
-        verify(productLocalDataSource.updateProduct(tid, tProductModels));
+        verify(productLocalDataSource.updateProduct(tid, tProductModel));
 
-        expect(result, equals(Right(tProductModels)));
+        expect(result, equals(Right(tProductModel)));
       });
 
       test(
         'should return cache error when the local data source is unsuccesfull',
         () async {
           when(
-            productLocalDataSource.updateProduct(tid, tProductModels),
+            productLocalDataSource.updateProduct(tid, tProductModel),
           ).thenThrow(CacheException());
 
           final result = await productRepositoryImp.updateProduct(
             tid,
-            tProductModels,
+            tProductModel,
           );
 
           /// this check wather remote source is called or not
-          verify(productLocalDataSource.updateProduct(tid, tProductModels));
+          verify(productLocalDataSource.updateProduct(tid, tProductModel));
 
           /// this check does it throw server exception or not
           expect(result, equals(Left(CacheFailure())));
@@ -272,16 +257,7 @@ void main() {
   });
 
     group('getProductById', () {
-    final tProductModel = ProductModel(
-      id: 1,
-      title: 'Test',
-      subtitle: 'Sub',
-      price: 2,
-      imageurl: 'url',
-      discription: 'desc',
-    );
 
-    const tId = 1;
 
     group('device is online', () {
       setUp(() {
@@ -289,22 +265,22 @@ void main() {
       });
 
       test('should return product from remote data source', () async {
-        when(productRemoteDataSource.getProductById(tId))
+        when(productRemoteDataSource.getProductById(tid))
             .thenAnswer((_) async => tProductModel);
 
-        final result = await productRepositoryImp.getProductById(tId);
+        final result = await productRepositoryImp.getProductById(tid);
 
-        verify(productRemoteDataSource.getProductById(tId));
+        verify(productRemoteDataSource.getProductById(tid));
         expect(result, equals(Right(tProductModel)));
       });
 
       test('should return server failure when remote throws', () async {
-        when(productRemoteDataSource.getProductById(tId))
+        when(productRemoteDataSource.getProductById(tid))
             .thenThrow(ServerException());
 
-        final result = await productRepositoryImp.getProductById(tId);
+        final result = await productRepositoryImp.getProductById(tid);
 
-        verify(productRemoteDataSource.getProductById(tId));
+        verify(productRemoteDataSource.getProductById(tid));
         expect(result, equals(Left(ServerFailure())));
       });
     });
@@ -315,36 +291,28 @@ void main() {
       });
 
       test('should return product from local data source', () async {
-        when(productLocalDataSource.getProductById(tId))
+        when(productLocalDataSource.getProductById(tid))
             .thenAnswer((_) async => tProductModel);
 
-        final result = await productRepositoryImp.getProductById(tId);
+        final result = await productRepositoryImp.getProductById(tid);
 
-        verify(productLocalDataSource.getProductById(tId));
+        verify(productLocalDataSource.getProductById(tid));
         expect(result, equals(Right(tProductModel)));
       });
 
       test('should return cache failure when local throws', () async {
-        when(productLocalDataSource.getProductById(tId))
+        when(productLocalDataSource.getProductById(tid))
             .thenThrow(CacheException());
 
-        final result = await productRepositoryImp.getProductById(tId);
+        final result = await productRepositoryImp.getProductById(tid);
 
         expect(result, equals(Left(CacheFailure())));
-        verify(productLocalDataSource.getProductById(tId));
+        verify(productLocalDataSource.getProductById(tid));
       });
     });
   });
 
   group('addProduct', () {
-    final tProductModel = ProductModel(
-      id: 1,
-      title: 'Test',
-      subtitle: 'Sub',
-      price: 2,
-      imageurl: 'url',
-      discription: 'desc',
-    );
 
     group('device is online', () {
       setUp(() {
@@ -400,16 +368,6 @@ void main() {
   });
 
   group('deleteProduct', () {
-    const tId = 1;
-
-    final tProductModel = ProductModel(
-      id: 1,
-      title: 'Test',
-      subtitle: 'Sub',
-      price: 2,
-      imageurl: 'url',
-      discription: 'desc',
-    );
 
     group('device is online', () {
       setUp(() {
@@ -417,22 +375,22 @@ void main() {
       });
 
       test('should delete product remotely', () async {
-        when(productRemoteDataSource.deleteProduct(tId))
+        when(productRemoteDataSource.deleteProduct(tid))
             .thenAnswer((_) async => tProductModel);
 
-        final result = await productRepositoryImp.deleteProduct(tId);
+        final result = await productRepositoryImp.deleteProduct(tid);
 
-        verify(productRemoteDataSource.deleteProduct(tId));
+        verify(productRemoteDataSource.deleteProduct(tid));
         expect(result, equals(Right(tProductModel)));
       });
 
       test('should return server failure when remote fails', () async {
-        when(productRemoteDataSource.deleteProduct(tId))
+        when(productRemoteDataSource.deleteProduct(tid))
             .thenThrow(ServerException());
 
-        final result = await productRepositoryImp.deleteProduct(tId);
+        final result = await productRepositoryImp.deleteProduct(tid);
 
-        verify(productRemoteDataSource.deleteProduct(tId));
+        verify(productRemoteDataSource.deleteProduct(tid));
         expect(result, equals(Left(ServerFailure())));
       });
     });
@@ -443,22 +401,22 @@ void main() {
       });
 
       test('should delete product locally', () async {
-        when(productLocalDataSource.deleteProduct(tId))
+        when(productLocalDataSource.deleteProduct(tid))
             .thenAnswer((_) async => tProductModel);
 
-        final result = await productRepositoryImp.deleteProduct(tId);
+        final result = await productRepositoryImp.deleteProduct(tid);
 
-        verify(productLocalDataSource.deleteProduct(tId));
+        verify(productLocalDataSource.deleteProduct(tid));
         expect(result, equals(Right(tProductModel)));
       });
 
       test('should return cache failure when local fails', () async {
-        when(productLocalDataSource.deleteProduct(tId))
+        when(productLocalDataSource.deleteProduct(tid))
             .thenThrow(CacheException());
 
-        final result = await productRepositoryImp.deleteProduct(tId);
+        final result = await productRepositoryImp.deleteProduct(tid);
 
-        verify(productLocalDataSource.deleteProduct(tId));
+        verify(productLocalDataSource.deleteProduct(tid));
         expect(result, equals(Left(CacheFailure())));
       });
     });
