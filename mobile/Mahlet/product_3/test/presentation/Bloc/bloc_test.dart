@@ -26,35 +26,35 @@ void main() {
   late ProductBloc productBloc;
 
   final item = Product(
-    id: 1,
+    id: 'a1',
     imageurl: 'https://example.com/image.png',
     title: 'Test Product',
-    subtitle: 'Test Subtitle',
+ 
     price: 100,
     discription: 'This is a test product',
   );
 
     final newitem = Product(
-    id: 2,
+    id: 'a2',
     imageurl: 'https://example.com/image.png',
     title: 'Test Product',
-    subtitle: 'Test Subtitle',
+ 
     price: 200,
     discription: 'test product',
   );
 
   final items = [
     Product(
-      id: 1,
+      id: 'a1',
       imageurl: 'https://example.com/image.png',
       title: 'Test Product',
-      subtitle: 'Test Subtitle',
+   
       price: 100,
       discription: 'This is a test product',
     ),
   ];
 
-  int tid = 1;
+  String tid = 'a1';
 
   setUp(() {
     createProduct = MockCreateProduct();
