@@ -9,7 +9,7 @@ class UpdateProduct {
 
   UpdateProduct(this.productRepository);
 
-  Future<Either<Failure, Product>> call(int id,Product product) async {
-    return await productRepository.updateProduct(id,product);
+  Future<void> call(String id,Product product) async {
+    await productRepository.updateProduct(id,product);
   }
 }

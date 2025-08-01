@@ -5,30 +5,27 @@ class ProductModel extends Product {
     super.id ,
     required super.imageurl,
     required super.title,
-    required super.subtitle,
     required super.price,
     required super.discription,
   });
 
   factory ProductModel.fromJson(Map<String, dynamic> json) {
     return ProductModel(
-      discription:json['discription'] ,
       id: json['id'],
-      imageurl: json['imageurl'] ,
-      price: (json['price'] as num).toDouble() ,
-      subtitle: json['subtitle'] ,
-      title: json['title'] ,
+      title: json['name'],                        // ← from 'name'
+      discription: json['description'],           // ← from 'description'
+      price: (json['price'] as num).toDouble(),   // ← price as double
+      imageurl: json['imageUrl'],                 // ← from 'imageUrl'     
       );
   }
 
   Map<String, dynamic> toJson() {
     return {
-      'id': id,
-      'imageurl': imageurl,
-      'title': title,
-      'subtitle': subtitle,
+       'id': id,
+      'name': title,                // match the backend’s key
+      'description': discription,
       'price': price,
-      'discription': discription,
+      'imageUrl': imageurl,
     };
   }
 }

@@ -19,6 +19,17 @@ void main() {
     localDataSourceImp = LocalDataSourceImp(sharedPreferences);
   });
 
+String id = 'a1';
+   final value = [
+      ProductModel(
+        id: 'a1',
+        imageurl: 'https://example.com/image.png',
+        title: 'Test Product',
+        price: 100,
+        discription: 'This is a test product',
+      ),
+    ];
+
   group('getlastproduct', () {
     final dummy_product_json = jsonDecode(readJson('dummy')) as List;
     final dummy_product = dummy_product_json
@@ -52,16 +63,7 @@ void main() {
   });
 
   group('cacheProduct', () {
-    final value = [
-      ProductModel(
-        id: 1,
-        imageurl: 'https://example.com/image.png',
-        title: 'Test Product',
-        subtitle: 'Test Subtitle',
-        price: 100,
-        discription: 'This is a test product',
-      ),
-    ];
+   
 
     test('should cache last product to shared preferences', () async {
       //act
@@ -80,10 +82,9 @@ void main() {
 
   group('getProductById', () {
     final item = ProductModel(
-      id: 1,
+      id: 'a1',
       imageurl: 'https://example.com/image.png',
       title: 'Test Product',
-      subtitle: 'Test Subtitle',
       price: 100,
       discription: 'This is a test product',
     );
@@ -99,7 +100,7 @@ void main() {
           sharedPreferences.getString('Cached_products'),
         ).thenReturn(readJson('dummy'));
 
-        final actual = await localDataSourceImp.getProductById(1);
+        final actual = await localDataSourceImp.getProductById(id);
 
         //assert
         expect(actual, equals(item));
@@ -117,27 +118,27 @@ void main() {
         final result = localDataSourceImp.getProductById;
 
         //       //assert
-        expect(() => result(1), throwsA(TypeMatcher<CacheException>()));
+        expect(() => result(id), throwsA(TypeMatcher<CacheException>()));
       },
     );
   });
 
   group('addProduct', () {
   final newProduct = ProductModel(
-    id: 3,
+    id: 'a3',
     imageurl: 'https://example.com/image3.png',
     title: 'New Product',
-    subtitle: 'Subtitle',
+  
     price: 150,
     discription: 'This is a new product',
   );
 
   final existingProducts = [
     ProductModel(
-      id: 1,
+      id: 'a1',
       imageurl: 'https://example.com/image.png',
       title: 'Test Product',
-      subtitle: 'Test Subtitle',
+     
       price: 100,
       discription: 'This is a test product',
     ),
@@ -170,18 +171,18 @@ void main() {
 group('deleteProduct', () {
   final initialList = [
     ProductModel(
-      id: 1,
+      id: 'a1',
       imageurl: 'https://example.com/image.png',
       title: 'Product A',
-      subtitle: 'Subtitle A',
+   
       price: 100,
       discription: 'Product A desc',
     ),
     ProductModel(
-      id: 2,
+      id: 'a2',
       imageurl: 'https://example.com/image2.png',
       title: 'Product B',
-      subtitle: 'Subtitle B',
+      
       price: 150,
       discription: 'Product B desc',
     ),
@@ -200,7 +201,7 @@ group('deleteProduct', () {
     )).thenAnswer((_) async => true);
 
     // Act
-    await localDataSourceImp.deleteProduct(1);
+    await localDataSourceImp.deleteProduct(id);
 
     // Assert
     verify(sharedPreferences.setString(
@@ -212,20 +213,19 @@ group('deleteProduct', () {
 
 group('updateProduct', () {
   final updatedProduct = ProductModel(
-    id: 1,
+    id: 'a1',
     imageurl: 'https://example.com/image_updated.png',
     title: 'Updated Product',
-    subtitle: 'Updated Subtitle',
+   
     price: 200,
     discription: 'This is an updated product',
   );
 
   final initialList = [
     ProductModel(
-      id: 1,
+      id: 'a1',
       imageurl: 'https://example.com/image.png',
       title: 'Old Product',
-      subtitle: 'Old Subtitle',
       price: 100,
       discription: 'Old product desc',
     ),
@@ -243,7 +243,7 @@ group('updateProduct', () {
     )).thenAnswer((_) async => true);
 
     // Act
-    final result = await localDataSourceImp.updateProduct(1, updatedProduct);
+    final result = await localDataSourceImp.updateProduct(id, updatedProduct);
 
     // Assert
     expect(result, equals(updatedProduct));

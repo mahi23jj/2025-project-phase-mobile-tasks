@@ -33,7 +33,7 @@ class LocalDataSourceImp extends ProductLocalDataSource {
   }
   
   @override
-  Future<ProductModel> getProductById(int id) async {
+  Future<ProductModel> getProductById(String id) async {
     try {
       final productList = await getlastProducts();
       return productList.firstWhere((e) => e.id == id);
@@ -61,7 +61,7 @@ class LocalDataSourceImp extends ProductLocalDataSource {
   }
 
   @override
-  Future<ProductModel> updateProduct(int id, Product product) async {
+  Future<ProductModel> updateProduct(String id, Product product) async {
     final productList = await getlastProducts();
 
     final index = productList.indexWhere((item) => item.id == id);
@@ -80,7 +80,7 @@ class LocalDataSourceImp extends ProductLocalDataSource {
   }
 
   @override
-  Future<void> deleteProduct(int id) async {
+  Future<void> deleteProduct(String id) async {
     final productList = await getlastProducts();
 
     final index = productList.indexWhere((item) => item.id == id);
