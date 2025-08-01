@@ -39,9 +39,9 @@ test/
 
 ## 🔁 Performed Task in this Separation
 
-### 🗂️ Data Layer Remote DataSource
-- Implements Remote data source implementation
-- Implements test for Remote data source implementation
+### 🗂️ Bloc State mangment
+- Implements Bloc state Mangment for presentation
+- Implements test for Bloc state Mangment for presentation
 ---
 
 ## 🧪 Testing
