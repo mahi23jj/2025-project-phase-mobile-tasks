@@ -14,7 +14,7 @@ This project is a simple yet modular **eCommerce Product Management App** built 
 
 ## 🏗️ Project Architecture – Clean Architecture
 
-lib/
+```lib/
 ├── core/ # Common entities, failures, and utilities
 │ ├── error/
 │ └── usecases/
@@ -34,12 +34,9 @@ lib/
 ├── main.dart
 test/
 └── (unit + widget tests)
+```
 
-This separation allows **maximum testability**, **scalability**, and **independent development** of features.
-
----
-
-## 🔁 Data Flow
+## 🔁 Performed Task in this Separation
 
 ### 🗂️ Data Layer
 - Implements repository contracts via:
@@ -62,13 +59,14 @@ All business logic is tested using `blocTest` and mocks.
 - Model serialization & deserialization
 
 📁 Test Folder Structure:
-
+```
 test/
 └── features/
 └── product/
 ├── data/
 ├── domain/
 └── presentation/
+```
 
 🚀 Getting Started
 ✅ Prerequisites
