@@ -77,7 +77,7 @@ Dart >= 3.0
 flutter_bloc, mocktail, dartz, etc. installed
 
 🛠️ Run Locally
-git clone https://github.com/yourusername/ecommerce_bloc_clean.git
+git clone https://github.com/mahi23jj/2025-project-phase-mobile-tasks.git
 cd ecommerce_bloc_clean
 flutter pub get
 flutter run
