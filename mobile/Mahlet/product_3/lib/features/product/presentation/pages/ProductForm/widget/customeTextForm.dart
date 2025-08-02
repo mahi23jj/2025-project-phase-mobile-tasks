@@ -19,3 +19,4 @@ InputDecoration fieldDecoration({
     suffixIcon: suffix,
   );
 }
+
