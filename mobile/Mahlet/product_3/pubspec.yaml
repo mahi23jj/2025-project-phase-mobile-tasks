@@ -42,6 +42,7 @@ dependencies:
   http: 
   flutter_bloc:
   get_it: 
+  image_picker:
 
 dev_dependencies:
   flutter_test:
