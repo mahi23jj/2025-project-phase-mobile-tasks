@@ -2,6 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
  // 🔥 Required for BlocProvider
 
+import 'features/autentication/presentation/bloc/user_bloc.dart';
+import 'features/autentication/presentation/pages/login_page.dart';
+import 'features/autentication/presentation/pages/sign_up.dart';
+import 'features/chat/presentation/Bloc/chat_bloc.dart';
+import 'features/chat/presentation/Bloc/chat_event.dart';
+import 'features/chat/presentation/page/contact_list.dart';
 import 'features/product/presentation/bloc/product_event.dart';
 import 'features/product/presentation/pages/Description/screen/description.dart';
 import 'features/product/presentation/pages/Home/screen/Home_page.dart';
@@ -9,7 +15,7 @@ import 'features/product/presentation/pages/ProductForm/screen/Add_productForm.d
 import 'features/product/presentation/pages/ProductForm/screen/Edit_productForm.dart';
 import 'features/product/presentation/pages/Search/screen/search.dart';
 import 'features/product/presentation/bloc/product_bloc.dart'; // ✅ Add this if not already
-import 'features/product/injection_container.dart' as di;
+import 'core/injection_container.dart' as di;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,42 +26,56 @@ void main() async {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return BlocProvider<ProductBloc>(
-      create: (_) => di.sl<ProductBloc>()..add(LoadAllProductsEvent()),
-      child: MaterialApp(
-        onGenerateRoute: (settings) {
-          Widget page;
-          switch (settings.name) {
-            case '/edit':
-              page = const EditFormpage();
-              break;
-            case '/search':
-              page = Searchpage();
-              break;
-            case '/description':
-              page = const Description();
-              break;
-            case '/productform':
-              page = const ProductFormPage();
-              break;
-            default:
-              page = const Homepage();
-              break;
-          }
-          return _buildPageRoute(page, settings);
-        },
-        title: 'Flutter Demo',
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          primaryColor: const Color.fromRGBO(63, 81, 243, 1),
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
-        ),
+@override
+Widget build(BuildContext context) {
+  return MultiBlocProvider(
+    providers: [
+      BlocProvider<UserBloc>(
+        create: (_) => di.sl<UserBloc>(),
       ),
-    );
-  }
+      BlocProvider<ChatBloc>(
+        create: (_) => di.sl<ChatBloc>()..add(Loadcontact()),
+      ),
+      // Add more BlocProviders here as needed
+    ],
+    child: MaterialApp(
+      onGenerateRoute: (settings) {
+        Widget page;
+        switch (settings.name) {
+          case '/edit':
+            page = const EditFormpage();
+            break;
+          case '/search':
+            page = Searchpage();
+            break;
+          case '/description':
+            page = const Description();
+            break;
+          case '/contacts':
+            page = ContactList();
+            break;
+          case '/chat':
+            page = const Description();
+            break;
+          case '/signin':
+            page = const LoginPage();
+            break;
+          default:
+            page = const SignupPage();
+            break;
+        }
+        return _buildPageRoute(page, settings);
+      },
+      title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primaryColor: const Color.fromRGBO(63, 81, 243, 1),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
+      ),
+    ),
+  );
 }
+
 
 PageRoute _buildPageRoute(Widget page, RouteSettings settings) {
   return PageRouteBuilder(
@@ -69,4 +89,5 @@ PageRoute _buildPageRoute(Widget page, RouteSettings settings) {
       return SlideTransition(position: offsetAnimation, child: child);
     },
   );
+}
 }

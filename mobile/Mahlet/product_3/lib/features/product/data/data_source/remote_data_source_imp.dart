@@ -15,10 +15,10 @@ class RemoteDataSourceImp extends ProductRemoteDataSource {
   Future<List<ProductModel>> getAllProduct() async {
     final result = await client.get(
       headers: {'Content-Type': 'application/json'},
-      Uri.parse('https://g5-flutter-learning-path-be-tvum.onrender.com'),
+      Uri.parse('https://g5-flutter-learning-path-be-tvum.onrender.com/api/v1/products'),
     );
 
-    if (result.statusCode == 200) {
+    if (result.statusCode == 200 || result.statusCode == 201) {
       return List<ProductModel>.from(
         jsonDecode(result.body).map((x) => ProductModel.fromJson(x)).toList(),
       );
@@ -31,10 +31,10 @@ class RemoteDataSourceImp extends ProductRemoteDataSource {
   Future<ProductModel> getProductById(String id) async {
     final result = await client.get(
       headers: {'Content-Type': 'application/json'},
-      Uri.parse('https://g5-flutter-learning-path-be-tvum.onrender.com/$id'),
+      Uri.parse('https://g5-flutter-learning-path-be-tvum.onrender.com/api/v1/products/$id'),
     );
 
-    if (result.statusCode == 200) {
+    if (result.statusCode == 200 || result.statusCode == 201) {
       return ProductModel.fromJson(jsonDecode(result.body));
     } else {
       throw ServerException();
@@ -48,12 +48,12 @@ class RemoteDataSourceImp extends ProductRemoteDataSource {
   final result = jsonEncode(productMap.toJson());
 
     final response = await client.post(
-      Uri.parse('https://g5-flutter-learning-path-be-tvum.onrender.com'),
+      Uri.parse('https://g5-flutter-learning-path-be-tvum.onrender.com/api/v1/products'),
       body: result,
       headers: {'Content-Type': 'application/json'},
     );
 
-    if (response.statusCode == 201) {
+    if (response.statusCode == 201 || response.statusCode == 200) {
       return ProductModel.fromJson(jsonDecode(response.body));
     }else{
       throw ServerException();
@@ -66,12 +66,12 @@ class RemoteDataSourceImp extends ProductRemoteDataSource {
   final result = jsonEncode(productMap.toJson());
 
    final response = await client.put(
-      Uri.parse('https://g5-flutter-learning-path-be-tvum.onrender.com/$id'),
+      Uri.parse('https://g5-flutter-learning-path-be-tvum.onrender.com/api/v1/products/$id'),
     body:result ,
       headers: {'Content-Type': 'application/json'},
     );
 
-    if (response.statusCode == 200) {
+    if (response.statusCode == 200 || response.statusCode == 201) {
       return ProductModel.fromJson(jsonDecode(response.body));
     }else{
       throw ServerException();
@@ -84,11 +84,11 @@ class RemoteDataSourceImp extends ProductRemoteDataSource {
   @override
   Future<void> deleteProduct(String id) async{
     final response = await client.delete(
-      Uri.parse('https://g5-flutter-learning-path-be-tvum.onrender.com/$id'),
+      Uri.parse('https://g5-flutter-learning-path-be-tvum.onrender.com/api/v1/products/$id'),
       headers: {'Content-Type': 'application/json'},
     );
 
-    if (response.statusCode == 200) {
+    if (response.statusCode == 200 || response.statusCode == 201) {
     }else{
       throw ServerException();
     }
