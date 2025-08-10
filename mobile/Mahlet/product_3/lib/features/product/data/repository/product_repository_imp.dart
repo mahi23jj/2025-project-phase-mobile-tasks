@@ -27,8 +27,8 @@ class ProductRepositoryImp extends ProductRepository {
         final remoteProducts = await productRemoteDataSource.getAllProduct();
         await productLocalDataSource.cacheProduct(remoteProducts);
         return Right(remoteProducts);
-      } on ServerException {
-        return Left(ServerFailure());
+      } on ServerException catch (e) {
+        return Left(ServerFailure(e.toString()));
       }
     } else {
       try {
@@ -46,8 +46,8 @@ class ProductRepositoryImp extends ProductRepository {
       try {
         final remoteProduct = await productRemoteDataSource.getProductById(id);
         return Right(remoteProduct);
-      } on ServerException {
-        return Left(ServerFailure());
+      } on ServerException catch (e) {
+        return Left(ServerFailure(e.toString()));
       }
     } else {
       try {
@@ -65,8 +65,8 @@ class ProductRepositoryImp extends ProductRepository {
       try {
         final remoteProduct = await productRemoteDataSource.addProduct(product);
         return Right(remoteProduct);
-      } on ServerException {
-        return Left(ServerFailure());
+      }  on ServerException catch (e) {
+        return Left(ServerFailure(e.toString()));
       }
     } else {
       try {
@@ -84,8 +84,8 @@ class ProductRepositoryImp extends ProductRepository {
       try {
         final remoteProduct = await productRemoteDataSource.updateProduct(id, product);
         return Right(remoteProduct);
-      } on ServerException {
-        return Left(ServerFailure());
+      } on ServerException catch (e) {
+        return Left(ServerFailure(e.toString()));
       }
     } else {
       try {
@@ -103,8 +103,8 @@ class ProductRepositoryImp extends ProductRepository {
       try {
         final remoteProduct = await productRemoteDataSource.deleteProduct(id);
         return Right(remoteProduct);
-      } on ServerException {
-        return Left(ServerFailure());
+      } on ServerException catch (e) {
+        return Left(ServerFailure(e.toString()));
       }
     } else {
       try {

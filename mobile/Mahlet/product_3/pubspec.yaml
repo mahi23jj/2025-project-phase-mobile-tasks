@@ -43,6 +43,8 @@ dependencies:
   flutter_bloc:
   get_it: 
   image_picker:
+  dio:
+  socket_io_client:
 
 dev_dependencies:
   flutter_test:
