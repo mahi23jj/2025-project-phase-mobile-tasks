@@ -42,6 +42,8 @@ test/
 ### 🗂️ Data Layer Remote DataSource
 - Implements Remote data source implementation
 - Implements test for Remote data source implementation
+- autnetication feature
+- chat feature with socket,io
 ---
 
 ## 🧪 Testing
