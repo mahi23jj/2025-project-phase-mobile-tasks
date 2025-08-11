@@ -49,7 +49,7 @@ class UserRepoImp extends UserRepository {
   ) async {
     try {
       final result = await remoteDataSource.signUp(name, email, password);
-      return Right(UserModel.toentity(result));
+      return Right(result.toEntity());
     } on ServerException catch (e) {
       return Left(ServerFailure(e.toString()));
     } on NetworkException catch (e) {

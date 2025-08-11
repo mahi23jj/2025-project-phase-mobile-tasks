@@ -76,7 +76,7 @@ Future<void> init() async {
 
   // WebSocket Service (depends on LocalUserDataSource)
   sl.registerLazySingleton<WebSocketService>(
-    () => WebSocketService(authService: sl()),
+    () => WebSocketService(sl()),
   );
 
   // Chat Data source

@@ -34,6 +34,8 @@ class RemoteUserDataSourceImp extends RemoteUserDataSource {
     // Ensure token exists
     if (userJson['data']['access_token'] == null) {
       throw Exception('No token in login response');
+    } else{
+      print(userJson['data']['access_token']);
     }
 
     return userJson; // Return full decoded map

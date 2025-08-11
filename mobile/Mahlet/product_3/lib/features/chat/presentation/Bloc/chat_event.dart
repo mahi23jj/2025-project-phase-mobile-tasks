@@ -26,9 +26,11 @@ class StartChat extends ChatEvent {
 class Loadcontact extends ChatEvent {}
 
 class SendMessageEvent extends ChatEvent {
-  final ChatMessageEntity message;
+final String chatid;
+   final String message;
+    final String type;
 
-  SendMessageEvent(this.message);
+  SendMessageEvent(this.chatid,this.message, this.type);
 
   @override
   List<Object?> get props => [message];

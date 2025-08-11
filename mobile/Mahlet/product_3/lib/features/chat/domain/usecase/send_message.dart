@@ -9,8 +9,10 @@ class SendMessage {
 
   SendMessage(this._chatRepository);
 
-  Future<Either<Failure, void>> call(ChatMessageEntity message) async {
-    return _chatRepository.sendmessage(message);
+  Future<Either<Failure, void>> call( String chatid,
+    String message,
+    String type,) async {
+    return _chatRepository.sendmessage(chatid, message, type);
   }
 
 

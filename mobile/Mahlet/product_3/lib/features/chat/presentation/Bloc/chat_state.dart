@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
+import '../../../autentication/domain/Entity/user_entiry.dart';
 import '../../domain/Entity/chat_message_Entity.dart';
-import '../../domain/Entity/chat_users.dart';
 
 abstract class ChatState extends Equatable {
   @override
@@ -12,7 +12,7 @@ class ChatInitial extends ChatState {}
 class ChatLoading extends ChatState {}
 
 class ContactLoad extends ChatState {
-  final List<ContactEntity> contacts;
+  final List<UserEntity> contacts;
 
   ContactLoad(this.contacts);
 }
@@ -35,9 +35,8 @@ class ChatError extends ChatState {
   List<Object?> get props => [error];
 }
 
-class Chatstartedstate extends ChatState{
+class Chatstartedstate extends ChatState {
   final String id;
-  Chatstartedstate(this.id);
-
-  
+  final String reciverid;
+  Chatstartedstate(this.id, this.reciverid);
 }

@@ -5,11 +5,12 @@ import 'package:http/http.dart' as http;
 
 import '../../../../core/injection_container.dart';
 import '../../../autentication/data/data_source/local_data_source.dart';
+import '../../../autentication/data/model/user_model.dart';
+import '../../../autentication/domain/Entity/user_entiry.dart';
 import '../../domain/Entity/chat_message_Entity.dart';
-import '../../domain/Entity/chat_users.dart';
+
 import '../Service/sockat_io.dart';
 import '../model/chat_model.dart';
-import '../model/contect_model.dart';
 import 'chat_remote_data_resource.dart';
 
 class ChatRemoteDataSourceImpl implements ChatRemoteDataSource {
@@ -23,8 +24,7 @@ class ChatRemoteDataSourceImpl implements ChatRemoteDataSource {
     // required this.socket,
   });
 
-
- final socket = sl<WebSocketService>();
+  final socket = sl<WebSocketService>();
 
   @override
   Future<String> startChat(String userId) async {
@@ -32,7 +32,9 @@ class ChatRemoteDataSourceImpl implements ChatRemoteDataSource {
     final token = await authLocalDataSource.gettoken();
 
     final response = await client.post(
-      Uri.parse('https://g5-flutter-learning-path-be-tvum.onrender.com/api/v3/chats'),
+      Uri.parse(
+        'https://g5-flutter-learning-path-be-tvum.onrender.com/api/v3/chats',
+      ),
       headers: {
         'Content-Type': 'application/json',
         'Authorization': 'Bearer $token',
@@ -44,16 +46,16 @@ class ChatRemoteDataSourceImpl implements ChatRemoteDataSource {
     print(response.body);
 
     if (response.statusCode == 200 || response.statusCode == 201) {
-
-   
       final data = jsonDecode(response.body);
-      final chatId = data['chatId'];
-
-
+      print(data);
+      final chatId = data['data']['_id'];
+      print("Chat ID: $chatId");
 
       // Join chat room after getting chatId (important for receiving messages)
       if (chatId != null) {
-        socket.joinChat(chatId);
+        // socket.joinChat(chatId);
+      } else {
+        throw Exception('Failed to get chatid');
       }
 
       return chatId;
@@ -62,32 +64,81 @@ class ChatRemoteDataSourceImpl implements ChatRemoteDataSource {
     }
   }
 
-  @override
-  Future<void> sendMessage(ChatMessageEntity message) async {
-    // throw UnimplementedError();
-    // Convert entity to model (assuming ChatModel.toEntity converts the other way)
-    final chatModel = ChatModel.toEntity(message);
 
-    // // Send message through socket
-    socket.sendMessage(chatModel);
+
+@override
+Future<void> sendMessage(String chatId, String message, String type) async {
+  try {
+    final success = await socket.sendMessage(
+      chatId: chatId,
+      content: message,
+      type: type,
+    );
+
+    if (!success) {
+      throw Exception('Failed to send message to chatId=$chatId');
+    }
+
+    print('✅ Message sent successfully to chatId=$chatId');
+  } catch (e) {
+    print('❌ Error sending message: $e');
+    rethrow; // Pass the error up so the Bloc/UseCase can handle it
   }
+}
+
+
+@override
+Stream<ChatMessageEntity> subscribeToMessages(String chatId) {
+
+  throw UnimplementedError();
+  // Make sure we join the chat room so we actually receive its messages
+  // socket.joinRoom(chatId);
+
+  // print("📡 Subscribing to messages for chat ID: $chatId");
+
+  // return socket.messageStream // This returns Stream<Map<String, dynamic>>
+  //     .where((raw) {
+  //       final rawChatId = raw['chatId']?.toString();
+  //       final match = rawChatId == chatId;
+  //       print('🔍 Filtering message with chatId=$rawChatId: match=$match');
+  //       return match;
+  //     })
+  //     .map((raw) {
+  //       // Convert raw map to ChatModel, then to Entity
+  //       final chatModel = ChatModel.fromJson(raw);
+  //       print('🗺 Mapping ChatModel to Entity: ${chatModel.message}');
+  //       return chatModel.toEntity();
+  //     });
+}
+
+
+
+  // @override
+  // Stream<ChatMessageEntity> subscribeToMessages(String chatId) {
+  //   // socket.joinChat(chatId);
+  //   print("Subscribing to messages for chat ID: $chatId");
+
+  //   print("Raw socket.messageStream: $socket.messageStream");
+
+  //   return socket.messageStream
+  //       .where((msg) {
+  //         final match = msg.chatid == chatId;
+  //         print('Filtering message with chatid=${msg.chatid}: match=$match');
+  //         return match;
+  //       })
+  //       .map((msg) {
+  //         print('Mapping ChatModel to Entity for message: ${msg.message}');
+  //         return msg.toEntity();
+  //       });
+  // }
 
   @override
-  Stream<ChatMessageEntity> subscribeToMessages(String chatId) {
-    // throw UnimplementedError();
-    socket.joinChat(chatId);
-    return socket.messageStream
-        .where((msg) => msg.chatid == chatId)
-        .map((msg) => ChatModel.toEntity(msg));
-  }
-
-  @override
-  Future<List<ContactEntity>> getContacts() async {
+  Future<List<UserEntity>> getContacts() async {
     final token = await authLocalDataSource.gettoken();
 
     final response = await http.get(
       Uri.parse(
-        'https://g5-flutter-learning-path-be-tvum.onrender.com/api/v3/chats',
+        'https://g5-flutter-learning-path-be-tvum.onrender.com/api/v3/users',
       ),
       headers: {'Authorization': 'Bearer $token'},
     );
@@ -101,7 +152,7 @@ class ChatRemoteDataSourceImpl implements ChatRemoteDataSource {
           : decoded['data'];
 
       return dataList
-          .map((contactJson) => ContactModel.fromJson(contactJson))
+          .map((contactJson) => UserModel.fromJson(contactJson))
           .toList();
     } else {
       throw Exception(

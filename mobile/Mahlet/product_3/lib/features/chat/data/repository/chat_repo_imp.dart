@@ -2,8 +2,8 @@ import 'package:dartz/dartz.dart';
 
 import '../../../../core/Error/exception.dart';
 import '../../../../core/Error/failure.dart';
+import '../../../autentication/domain/Entity/user_entiry.dart';
 import '../../domain/Entity/chat_message_Entity.dart';
-import '../../domain/Entity/chat_users.dart';
 import '../../domain/repository/chat_repo.dart';
 import '../data_source/chat_remote_data_resource.dart';
 
@@ -24,6 +24,7 @@ class ChatRepoImp extends ChatRepository {
   Future<Either<Failure, String>> initiatechat(String userid) async {
     try {
       final response = await chatRemoteDataSource.startChat(userid);
+
       return Right(response);
     } on NetworkException catch (e) {
       return Left(ServerFailure(e.message));
@@ -31,9 +32,11 @@ class ChatRepoImp extends ChatRepository {
   }
 
   @override
-  Future<Either<Failure, void>> sendmessage(ChatMessageEntity message) async {
+  Future<Either<Failure, void>> sendmessage( String chatid,
+    String message,
+    String type,) async {
     try {
-      await chatRemoteDataSource.sendMessage(message); // Await here
+      await chatRemoteDataSource.sendMessage(chatid, message, type); // Await here
       return const Right(null);
     } on NetworkException catch (e) {
       return Left(ServerFailure(e.message));
@@ -52,7 +55,7 @@ class ChatRepoImp extends ChatRepository {
   }
 
   @override
-  Future<Either<Failure, List<ContactEntity>>> getContacts() async {
+  Future<Either<Failure, List<UserEntity>>> getContacts() async {
     try {
       final response = await chatRemoteDataSource.getContacts();
       return Right(response);

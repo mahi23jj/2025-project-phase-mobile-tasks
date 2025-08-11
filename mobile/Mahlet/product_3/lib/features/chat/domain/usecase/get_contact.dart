@@ -2,7 +2,8 @@
 import 'package:dartz/dartz.dart';
 
 import '../../../../core/Error/failure.dart';
-import '../Entity/chat_users.dart';
+import '../../../autentication/domain/Entity/user_entiry.dart';
+
 
 import '../repository/chat_repo.dart';
 
@@ -10,7 +11,7 @@ class GetContactsUseCase {
   final ChatRepository repository;
   GetContactsUseCase(this.repository);
 
-  Future<Either<Failure,List<ContactEntity>>> call() async {
+  Future<Either<Failure,List<UserEntity>>> call() async {
     return await repository.getContacts();
   }
 }

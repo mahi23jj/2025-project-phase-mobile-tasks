@@ -16,12 +16,59 @@ import 'features/product/presentation/pages/ProductForm/screen/Edit_productForm.
 import 'features/product/presentation/pages/Search/screen/search.dart';
 import 'features/product/presentation/bloc/product_bloc.dart'; // ✅ Add this if not already
 import 'core/injection_container.dart' as di;
+import 'socate_test_page.dart';
+import 'test_sockate.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await di.init(); // initialize dependencies
-  runApp(const MyApp());
+  runApp(MyApp());
 }
+
+// class MyApp extends StatelessWidget {
+//   const MyApp({super.key});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//         title: 'Flutter Demo',
+//       debugShowCheckedModeBanner: false,
+//       theme: ThemeData(
+//         primaryColor: const Color.fromRGBO(63, 81, 243, 1),
+//         colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
+//       ),
+//       home: SocketTestPage(),
+
+      
+//     );
+//   }
+//
+
+// void main() async {
+//   final webSocketService = WebSocketServicetest();
+
+//   webSocketService.connect();
+
+//   // Wait a bit to ensure connection is established
+//   await Future.delayed(Duration(seconds: 2));
+
+//   final sent = await webSocketService.sendMessage(
+//     chatId: '6899c60e817e9a3287ca515f',
+//     content: 'Hey you!',
+//     type: 'text',
+//   );
+
+//   print(sent ? '✅ Message sent' : '❌ Failed to send message');
+
+//   // Listen for incoming messages
+//   webSocketService.messageStream.listen((message) {
+//     print('📥 Incoming message: $message');
+//   });
+
+//   // Later, when you close app or no longer need socket:
+//   webSocketService.dispose();
+// }
+
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
